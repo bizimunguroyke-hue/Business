@@ -12,7 +12,7 @@ import csv
 suppliers_bp = Blueprint('suppliers', __name__)
 
 @suppliers_bp.route('/', methods=['GET'])
-@admin_required
+@staff_required
 def get_suppliers():
     try:
         business_id = get_business_id()
@@ -55,7 +55,7 @@ def get_suppliers():
         return jsonify({'error': str(e)}), 500
 
 @suppliers_bp.route('/', methods=['POST'])
-@admin_required
+@staff_required
 def create_supplier():
     try:
         business_id = get_business_id()
@@ -129,7 +129,7 @@ def create_supplier():
         return jsonify({'error': str(e)}), 500
 
 @suppliers_bp.route('/<int:supplier_id>', methods=['GET'])
-@admin_required
+@staff_required
 def get_supplier(supplier_id):
     try:
         business_id = get_business_id()
@@ -144,7 +144,7 @@ def get_supplier(supplier_id):
         return jsonify({'error': str(e)}), 500
 
 @suppliers_bp.route('/<int:supplier_id>', methods=['PUT'])
-@admin_required
+@staff_required
 def update_supplier(supplier_id):
     try:
         business_id = get_business_id()
@@ -203,7 +203,7 @@ def update_supplier(supplier_id):
         return jsonify({'error': str(e)}), 500
 
 @suppliers_bp.route('/<int:supplier_id>', methods=['DELETE'])
-@admin_required
+@staff_required
 def delete_supplier(supplier_id):
     try:
         business_id = get_business_id()
@@ -226,7 +226,7 @@ def delete_supplier(supplier_id):
         return jsonify({'error': str(e)}), 500
 
 @suppliers_bp.route('/<int:supplier_id>/products', methods=['GET'])
-@admin_required
+@staff_required
 def get_supplier_products(supplier_id):
     try:
         business_id = get_business_id()
@@ -244,7 +244,7 @@ def get_supplier_products(supplier_id):
 
 
 @suppliers_bp.route('/bulk-upload', methods=['POST'])
-@admin_required
+@staff_required
 @manager_required
 def bulk_upload_suppliers():
     """

@@ -10,7 +10,7 @@ from datetime import datetime, date
 expenses_bp = Blueprint('expenses', __name__)
 
 @expenses_bp.route('/categories', methods=['GET'])
-@admin_required
+@staff_required
 def get_expense_categories():
     try:
         categories = [
@@ -30,7 +30,7 @@ def get_expense_categories():
         return jsonify({'error': str(e)}), 500
 
 @expenses_bp.route('/expenses', methods=['GET'])
-@admin_required
+@staff_required
 def get_expenses():
     try:
         business_id = get_business_id()
@@ -88,7 +88,7 @@ def get_expenses():
         return jsonify({'error': str(e)}), 500
 
 @expenses_bp.route('/expenses', methods=['POST'])
-@admin_required
+@staff_required
 def create_expense():
     try:
         business_id = get_business_id()
@@ -154,7 +154,7 @@ def create_expense():
         return jsonify({'error': str(e)}), 500
 
 @expenses_bp.route('/expenses/<int:expense_id>', methods=['GET'])
-@admin_required
+@staff_required
 def get_expense(expense_id):
     try:
         business_id = get_business_id()
@@ -169,8 +169,8 @@ def get_expense(expense_id):
         return jsonify({'error': str(e)}), 500
 
 @expenses_bp.route('/expenses/<int:expense_id>', methods=['PUT'])
-@admin_required
-@admin_required
+@staff_required
+@staff_required
 def update_expense(expense_id):
     try:
         business_id = get_business_id()
@@ -212,8 +212,8 @@ def update_expense(expense_id):
         return jsonify({'error': str(e)}), 500
 
 @expenses_bp.route('/expenses/<int:expense_id>', methods=['DELETE'])
-@admin_required
-@admin_required
+@staff_required
+@staff_required
 def delete_expense(expense_id):
     try:
         business_id = get_business_id()
@@ -250,8 +250,8 @@ def delete_expense(expense_id):
         return jsonify({'error': str(e)}), 500
 
 @expenses_bp.route('/expenses/approve/<int:expense_id>', methods=['PUT'])
-@admin_required
-@admin_required
+@staff_required
+@staff_required
 def approve_expense(expense_id):
     try:
         business_id = get_business_id()
@@ -286,8 +286,8 @@ def approve_expense(expense_id):
         return jsonify({'error': str(e)}), 500
 
 @expenses_bp.route('/expenses/reject/<int:expense_id>', methods=['PUT'])
-@admin_required
-@admin_required
+@staff_required
+@staff_required
 def reject_expense(expense_id):
     try:
         business_id = get_business_id()
@@ -327,7 +327,7 @@ def reject_expense(expense_id):
         return jsonify({'error': str(e)}), 500
 
 @expenses_bp.route('/summary', methods=['GET'])
-@admin_required
+@staff_required
 def get_expense_summary():
     try:
         business_id = get_business_id()

@@ -295,7 +295,7 @@ def get_return(return_id):
 
 @returns_bp.route('/<int:return_id>', methods=['PUT'])
 @jwt_required()
-@admin_required
+@staff_required
 def update_return(return_id):
     try:
         business_id = get_business_id()
@@ -354,7 +354,7 @@ def update_return(return_id):
 
 @returns_bp.route('/<int:return_id>', methods=['DELETE'])
 @jwt_required()
-@admin_required
+@staff_required
 def delete_return(return_id):
     try:
         business_id = get_business_id()
@@ -375,7 +375,7 @@ def delete_return(return_id):
 
 @returns_bp.route('/<int:return_id>/status', methods=['PUT'])
 @jwt_required()
-@admin_required
+@staff_required
 def update_return_status(return_id):
     try:
         business_id = get_business_id()

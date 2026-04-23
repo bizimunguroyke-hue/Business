@@ -21,11 +21,11 @@ export const checkPermission = (user, module, action = 'view') => {
     // Admin has access to everything
     if (user.role === 'admin') return true;
     
-    // Global policy: only manager+ can approve, reject (usually part of approve/edit), update (edit), or delete
-    const managerOnlyActions = ['approve', 'reject', 'edit', 'delete'];
-    if (managerOnlyActions.includes(action)) {
-        if (user.role !== 'manager') return false;
-    }
+    // Manager has access to everything
+    if (user.role === 'manager') return true;
+    
+    // Staff has access to everything
+    if (user.role === 'staff') return true;
     
     // If user has no permissions object, default to false
     if (!user.permissions) return false;
@@ -50,6 +50,9 @@ export const usePermissions = () => {
         can: (module, action) => checkPermission(user, module, action),
         hasModule: (module) => checkPermission(user, module, 'view'),
         isSuperAdmin: user?.role === 'superadmin',
-        isAdmin: user?.role === 'admin' || user?.role === 'superadmin'
+        isAdmin: user?.role === 'admin' || user?.role === 'superadmin',
+        isManager: user?.role === 'manager' || user?.role === 'admin' || user?.role === 'superadmin',
+        isStaff: user?.role === 'staff' || user?.role === 'manager' || user?.role === 'admin' || user?.role === 'superadmin',
+        hasFullAccess: ['admin', 'manager', 'staff', 'superadmin'].includes(user?.role)
     };
 };

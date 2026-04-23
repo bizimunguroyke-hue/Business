@@ -13,7 +13,7 @@ import re
 invoices_bp = Blueprint('invoices', __name__)
 
 @invoices_bp.route('/', methods=['GET'])
-@admin_required
+@staff_required
 def get_invoices():
     try:
         business_id = get_business_id()
@@ -74,7 +74,7 @@ def get_invoices():
 
 
 @invoices_bp.route('/', methods=['POST'])
-@admin_required
+@staff_required
 def create_invoice():
     try:
         print(f" Invoice creation API called")
@@ -184,7 +184,7 @@ def create_invoice():
 
 
 @invoices_bp.route('/<int:invoice_id>', methods=['GET'])
-@admin_required
+@staff_required
 def get_invoice(invoice_id):
     try:
         business_id = get_business_id()
@@ -200,7 +200,7 @@ def get_invoice(invoice_id):
 
 
 @invoices_bp.route('/<int:invoice_id>', methods=['PUT'])
-@admin_required
+@staff_required
 def update_invoice(invoice_id):
     try:
         business_id = get_business_id()
@@ -258,7 +258,7 @@ def update_invoice(invoice_id):
 
 
 @invoices_bp.route('/<int:invoice_id>', methods=['DELETE'])
-@admin_required
+@staff_required
 def delete_invoice(invoice_id):
     try:
         business_id = get_business_id()
@@ -282,7 +282,7 @@ def delete_invoice(invoice_id):
 
 
 @invoices_bp.route('/<int:invoice_id>/status', methods=['PUT'])
-@admin_required
+@staff_required
 def update_invoice_status(invoice_id):
     try:
         business_id = get_business_id()
@@ -316,7 +316,7 @@ def update_invoice_status(invoice_id):
 
 
 @invoices_bp.route('/<int:invoice_id>/payment', methods=['PUT'])
-@admin_required
+@staff_required
 def record_invoice_payment(invoice_id):
     try:
         business_id = get_business_id()

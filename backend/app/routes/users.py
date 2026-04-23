@@ -12,7 +12,7 @@ import re
 users_bp = Blueprint('users', __name__)
 
 @users_bp.route('/', methods=['GET'])
-@admin_required
+@staff_required
 def get_users():
     try:
         business_id = get_business_id()
@@ -54,7 +54,7 @@ def get_users():
         return jsonify({'error': str(e)}), 500
 
 @users_bp.route('/<int:user_id>', methods=['GET'])
-@admin_required
+@staff_required
 def get_user(user_id):
     try:
         business_id = get_business_id()
@@ -69,7 +69,7 @@ def get_user(user_id):
         return jsonify({'error': str(e)}), 500
 
 @users_bp.route('/<int:user_id>', methods=['PUT'])
-@admin_required
+@staff_required
 def update_user(user_id):
     try:
         business_id = get_business_id()
@@ -174,7 +174,7 @@ def update_user(user_id):
         return jsonify({'error': str(e)}), 500
 
 @users_bp.route('/<int:user_id>', methods=['DELETE'])
-@admin_required
+@staff_required
 def delete_user(user_id):
     try:
         business_id = get_business_id()
@@ -214,8 +214,8 @@ def delete_user(user_id):
 
 # Create user endpoint
 @users_bp.route('/', methods=['POST'])
-@admin_required
-@admin_required
+@staff_required
+@staff_required
 def create_user():
     try:
         business_id = get_business_id()
@@ -356,7 +356,7 @@ def create_user():
 
 
 @users_bp.route('/roles', methods=['GET'])
-@admin_required
+@staff_required
 def get_user_roles():
     try:
         roles = [{'id': role.value, 'name': role.name.title()} for role in UserRole if role != UserRole.superadmin]

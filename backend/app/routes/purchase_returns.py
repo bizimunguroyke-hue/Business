@@ -282,7 +282,7 @@ def get_purchase_return(return_id):
         return jsonify({'error': str(e)}), 500
 
 @purchase_returns_bp.route('/<int:return_id>', methods=['PUT'])
-@admin_required
+@staff_required
 def update_purchase_return(return_id):
     try:
         business_id = get_business_id()
@@ -335,7 +335,7 @@ def update_purchase_return(return_id):
         return jsonify({'error': str(e)}), 500
 
 @purchase_returns_bp.route('/<int:return_id>', methods=['DELETE'])
-@admin_required
+@staff_required
 def delete_purchase_return(return_id):
     try:
         business_id = get_business_id()
@@ -361,7 +361,7 @@ def delete_purchase_return(return_id):
         return jsonify({'error': str(e)}), 500
 
 @purchase_returns_bp.route('/<int:return_id>/status', methods=['PUT'])
-@admin_required
+@staff_required
 def update_purchase_return_status(return_id):
     try:
         business_id = get_business_id()

@@ -101,7 +101,7 @@ def get_company_profile():
 
 @settings_bp.route('/company-profile', methods=['PUT'])
 @jwt_required()
-@admin_required
+@staff_required
 def update_company_profile():
     try:
         business_id = get_business_id()
@@ -222,7 +222,7 @@ def get_users():
 
 @settings_bp.route('/users/<int:user_id>', methods=['PUT'])
 @jwt_required()
-@admin_required
+@staff_required
 def update_user(user_id):
     try:
         business_id = get_business_id()
@@ -249,7 +249,7 @@ def update_user(user_id):
 
 @settings_bp.route('/users/<int:user_id>', methods=['DELETE'])
 @jwt_required()
-@admin_required
+@staff_required
 def delete_user(user_id):
     try:
         business_id = get_business_id()
@@ -351,7 +351,7 @@ def get_permission_groups():
 
 @settings_bp.route('/permission-groups', methods=['POST'])
 @jwt_required()
-@admin_required
+@staff_required
 def create_permission_group():
     try:
         business_id = get_business_id()
@@ -380,7 +380,7 @@ def create_permission_group():
 
 @settings_bp.route('/permission-groups/<int:group_id>', methods=['PUT'])
 @jwt_required()
-@admin_required
+@staff_required
 def update_permission_group(group_id):
     try:
         business_id = get_business_id()
@@ -410,7 +410,7 @@ def update_permission_group(group_id):
 
 @settings_bp.route('/permission-groups/<int:group_id>', methods=['DELETE'])
 @jwt_required()
-@admin_required
+@staff_required
 def delete_permission_group(group_id):
     try:
         business_id = get_business_id()
@@ -428,7 +428,7 @@ def delete_permission_group(group_id):
 
 @settings_bp.route('/permissions', methods=['POST'])
 @jwt_required()
-@admin_required
+@staff_required
 def create_permission():
     try:
         business_id = get_business_id()
@@ -461,7 +461,7 @@ def create_permission():
 
 @settings_bp.route('/permissions/<int:permission_id>', methods=['PUT'])
 @jwt_required()
-@admin_required
+@staff_required
 def update_permission(permission_id):
     try:
         business_id = get_business_id()
@@ -481,7 +481,7 @@ def update_permission(permission_id):
 
 @settings_bp.route('/permissions/<int:permission_id>', methods=['DELETE'])
 @jwt_required()
-@admin_required
+@staff_required
 def delete_permission(permission_id):
     try:
         business_id = get_business_id()
@@ -498,7 +498,7 @@ def delete_permission(permission_id):
 # System Settings API (Business Admin Only)
 @settings_bp.route('/system', methods=['GET'])
 @jwt_required()
-@admin_required
+@staff_required
 def get_system_settings():
     """Get business-level system settings (admin only)"""
     try:
@@ -533,7 +533,7 @@ def get_system_settings():
 
 @settings_bp.route('/system', methods=['PUT'])
 @jwt_required()
-@admin_required
+@staff_required
 def update_system_settings():
     """Update business-level system settings (admin only)"""
     try:
@@ -583,7 +583,7 @@ def update_system_settings():
 # Backup API
 @settings_bp.route('/backup', methods=['GET'])
 @jwt_required()
-@admin_required
+@staff_required
 def get_backup_status():
     try:
         business_id = get_business_id()
@@ -607,7 +607,7 @@ def get_backup_status():
 
 @settings_bp.route('/backup', methods=['POST'])
 @jwt_required()
-@admin_required
+@staff_required
 def create_backup():
     try:
         business_id = get_business_id()
@@ -633,7 +633,7 @@ def create_backup():
 # Audit Logs API
 @settings_bp.route('/audit-logs', methods=['GET'])
 @jwt_required()
-@admin_required
+@staff_required
 def get_audit_logs():
     try:
         business_id = get_business_id()

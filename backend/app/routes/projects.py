@@ -11,7 +11,7 @@ from datetime import datetime
 projects_bp = Blueprint('projects', __name__)
 
 @projects_bp.route('/', methods=['GET'])
-@admin_required
+@staff_required
 def get_projects():
     try:
         business_id = get_business_id()
@@ -23,7 +23,7 @@ def get_projects():
         return jsonify({'error': str(e)}), 500
 
 @projects_bp.route('/<int:project_id>', methods=['GET'])
-@admin_required
+@staff_required
 def get_project(project_id):
     try:
         business_id = get_business_id()
@@ -38,7 +38,7 @@ def get_project(project_id):
         return jsonify({'error': str(e)}), 500
 
 @projects_bp.route('/', methods=['POST'])
-@admin_required
+@staff_required
 def create_project():
     try:
         business_id = get_business_id()
@@ -74,7 +74,7 @@ def create_project():
         return jsonify({'error': str(e)}), 500
 
 @projects_bp.route('/<int:project_id>', methods=['PUT'])
-@admin_required
+@staff_required
 def update_project(project_id):
     try:
         business_id = get_business_id()
@@ -117,7 +117,7 @@ def update_project(project_id):
         return jsonify({'error': str(e)}), 500
 
 @projects_bp.route('/<int:project_id>', methods=['DELETE'])
-@admin_required
+@staff_required
 def delete_project(project_id):
     try:
         business_id = get_business_id()

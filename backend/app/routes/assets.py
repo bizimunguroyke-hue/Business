@@ -12,7 +12,7 @@ from datetime import datetime
 assets_bp = Blueprint('assets', __name__)
 
 @assets_bp.route('/', methods=['GET'])
-@admin_required
+@staff_required
 def get_assets():
     try:
         claims = get_jwt()
@@ -75,7 +75,7 @@ def get_assets():
 
 
 @assets_bp.route('/<int:asset_id>', methods=['GET'])
-@admin_required
+@staff_required
 def get_asset(asset_id):
     try:
         claims = get_jwt()
@@ -91,7 +91,7 @@ def get_asset(asset_id):
 
 
 @assets_bp.route('/', methods=['POST'])
-@admin_required
+@staff_required
 def create_asset():
     try:
         claims = get_jwt()
@@ -150,7 +150,7 @@ def create_asset():
 
 
 @assets_bp.route('/<int:asset_id>', methods=['PUT'])
-@admin_required
+@staff_required
 def update_asset(asset_id):
     try:
         claims = get_jwt()
@@ -192,7 +192,7 @@ def update_asset(asset_id):
 
 
 @assets_bp.route('/<int:asset_id>', methods=['DELETE'])
-@admin_required
+@staff_required
 def delete_asset(asset_id):
     try:
         claims = get_jwt()

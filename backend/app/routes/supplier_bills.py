@@ -147,7 +147,7 @@ def create_supplier_bill():
 
 
 @supplier_bills_bp.route('/<int:bill_id>', methods=['PUT'])
-@admin_required
+@staff_required
 def update_supplier_bill(bill_id):
     try:
         business_id = get_business_id()
@@ -200,7 +200,7 @@ def update_supplier_bill(bill_id):
 
 
 @supplier_bills_bp.route('/<int:bill_id>', methods=['DELETE'])
-@admin_required
+@staff_required
 def delete_supplier_bill(bill_id):
     try:
         business_id = get_business_id()

@@ -65,7 +65,7 @@ def create_plan():
 
 @subscriptions_bp.route('/subscribe', methods=['POST'])
 @jwt_required()
-@admin_required
+@staff_required
 def subscribe():
     """Subscribe to a plan"""
     try:
@@ -174,7 +174,7 @@ def get_current_subscription():
 
 @subscriptions_bp.route('/subscription/cancel', methods=['POST'])
 @jwt_required()
-@admin_required
+@staff_required
 def cancel_subscription():
     """Cancel current subscription"""
     try:

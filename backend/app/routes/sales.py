@@ -18,7 +18,7 @@ from app.utils.notifications import check_low_stock_and_notify
 sales_bp = Blueprint('sales', __name__)
 
 @sales_bp.route('/orders', methods=['GET'])
-@admin_required
+@staff_required
 def get_orders():
     try:
         business_id = get_business_id()
@@ -75,7 +75,7 @@ def get_orders():
         return jsonify({'error': str(e)}), 500
 
 @sales_bp.route('/orders', methods=['POST'])
-@admin_required
+@staff_required
 def create_order(is_pos_sale=False):
     try:
         business_id = get_business_id()
@@ -398,7 +398,7 @@ def create_order(is_pos_sale=False):
         return jsonify({'error': str(e)}), 500
 
 @sales_bp.route('/orders/<int:order_id>', methods=['GET'])
-@admin_required
+@staff_required
 def get_order(order_id):
     try:
         business_id = get_business_id()
@@ -413,7 +413,7 @@ def get_order(order_id):
         return jsonify({'error': str(e)}), 500
 
 @sales_bp.route('/orders/<int:order_id>', methods=['PUT'])
-@admin_required
+@staff_required
 def update_order(order_id):
     try:
         business_id = get_business_id()
@@ -532,7 +532,7 @@ def update_order(order_id):
         return jsonify({'error': str(e)}), 500
 
 @sales_bp.route('/orders/<int:order_id>', methods=['DELETE'])
-@admin_required
+@staff_required
 def delete_order(order_id):
     try:
         business_id = get_business_id()
@@ -555,8 +555,8 @@ def delete_order(order_id):
         return jsonify({'error': str(e)}), 500
 
 @sales_bp.route('/pos', methods=['POST'])
-@admin_required
-@admin_required
+@staff_required
+@staff_required
 def create_pos_sale():
     try:
         return create_order(is_pos_sale=True)
@@ -566,7 +566,7 @@ def create_pos_sale():
         return jsonify({'error': str(e)}), 500
 
 @sales_bp.route('/export/orders', methods=['GET'])
-@admin_required
+@staff_required
 def export_orders():
     """
     Export sales orders to CSV format

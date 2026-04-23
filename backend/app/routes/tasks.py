@@ -10,7 +10,7 @@ from datetime import datetime
 tasks_bp = Blueprint('tasks', __name__)
 
 @tasks_bp.route('/', methods=['GET'])
-@admin_required
+@staff_required
 def get_tasks():
     try:
         business_id = get_business_id()
@@ -26,7 +26,7 @@ def get_tasks():
         return jsonify({'error': str(e)}), 500
 
 @tasks_bp.route('/', methods=['POST'])
-@admin_required
+@staff_required
 def create_task():
     try:
         business_id = get_business_id()
@@ -58,7 +58,7 @@ def create_task():
         return jsonify({'error': str(e)}), 500
 
 @tasks_bp.route('/<int:task_id>', methods=['PUT'])
-@admin_required
+@staff_required
 def update_task(task_id):
     try:
         business_id = get_business_id()
@@ -86,7 +86,7 @@ def update_task(task_id):
         return jsonify({'error': str(e)}), 500
 
 @tasks_bp.route('/<int:task_id>', methods=['DELETE'])
-@admin_required
+@staff_required
 def delete_task(task_id):
     try:
         business_id = get_business_id()

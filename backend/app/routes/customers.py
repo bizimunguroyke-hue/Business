@@ -12,7 +12,7 @@ import csv
 customers_bp = Blueprint('customers', __name__)
 
 @customers_bp.route('/', methods=['GET'])
-@admin_required
+@staff_required
 def get_customers():
     try:
         business_id = get_business_id()
@@ -61,7 +61,7 @@ def get_customers():
         return jsonify({'error': str(e)}), 500
 
 @customers_bp.route('/', methods=['POST'])
-@admin_required
+@staff_required
 def create_customer():
     try:
         business_id = get_business_id()
@@ -136,7 +136,7 @@ def create_customer():
         return jsonify({'error': str(e)}), 500
 
 @customers_bp.route('/<int:customer_id>', methods=['GET'])
-@admin_required
+@staff_required
 def get_customer(customer_id):
     try:
         business_id = get_business_id()
@@ -151,7 +151,7 @@ def get_customer(customer_id):
         return jsonify({'error': str(e)}), 500
 
 @customers_bp.route('/<int:customer_id>', methods=['PUT'])
-@admin_required
+@staff_required
 def update_customer(customer_id):
     try:
         business_id = get_business_id()
@@ -212,7 +212,7 @@ def update_customer(customer_id):
         return jsonify({'error': str(e)}), 500
 
 @customers_bp.route('/<int:customer_id>', methods=['DELETE'])
-@admin_required
+@staff_required
 def delete_customer(customer_id):
     try:
         business_id = get_business_id()
@@ -235,7 +235,7 @@ def delete_customer(customer_id):
         return jsonify({'error': str(e)}), 500
 
 @customers_bp.route('/<int:customer_id>/orders', methods=['GET'])
-@admin_required
+@staff_required
 def get_customer_orders(customer_id):
     try:
         business_id = get_business_id()
@@ -252,7 +252,7 @@ def get_customer_orders(customer_id):
         return jsonify({'error': str(e)}), 500
 
 @customers_bp.route('/recalculate-balances', methods=['POST'])
-@admin_required
+@staff_required
 def recalculate_balances():
     try:
         business_id = get_business_id()
@@ -279,7 +279,7 @@ def recalculate_balances():
 
 
 @customers_bp.route('/bulk-upload', methods=['POST'])
-@admin_required
+@staff_required
 @manager_required
 def bulk_upload_customers():
     """
